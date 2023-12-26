@@ -1,7 +1,5 @@
 from yt_dlp import YoutubeDL
-
-f = open("links.txt", "r")
-URLS = f.readlines()
+import sys
 
 ydl_opts = {
     'format': 'mp3/bestaudio/best',
@@ -15,7 +13,14 @@ ydl_opts = {
     }
 }
 
+if len( sys.argv ) <= 1:
+    f = open("links.txt", "r")
+    URLS = f.readlines()
+else:
+    URLS = [sys.argv[1]]
+
 with YoutubeDL(ydl_opts) as ydl:
     ydl.download(URLS)
 
-f.close()
+if 'f' in locals():
+    f.close()
