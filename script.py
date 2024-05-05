@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from yt_dlp import YoutubeDL
 import sys
 
@@ -7,10 +8,10 @@ ydl_opts = {
         'key': 'FFmpegExtractAudio',
         'preferredcodec': 'mp3',
     }],
-    'verbose': 'true',
+#    'verbose': 'true',
     'paths': {
         'home': './music'
-    }
+    },
 }
 
 if len( sys.argv ) <= 1:
@@ -21,6 +22,9 @@ else:
 
 with YoutubeDL(ydl_opts) as ydl:
     ydl.download(URLS)
+    exit()
 
 if 'f' in locals():
     f.close()
+
+exit()
